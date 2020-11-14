@@ -66,9 +66,21 @@ void threadEncrypt(string text, int numOfThreads, vector<string> keys) {
 }
 
 
-int main() {
-    auto keys = readStrings("key.txt");
-    auto strings = readStrings("text.txt");
+int main(int argc, char* argv[]) {
+    // argv[1] - input file
+    // argv[2] - keys file
+    if (argc < 3){
+	cout << "Not enough console arguments" << endl;
+	cin.get();
+	return 0;
+    }
+    if (argc > 3){
+	cout << "Too many console arguments" << endl;
+	cin.get();
+	return 0;
+    }
+    auto keys = readStrings(argv[2]);
+    auto strings = readStrings(argv[1]);
     string text = "";
     for (string s : strings)
         text += s;
